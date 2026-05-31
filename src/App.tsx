@@ -190,7 +190,10 @@ function App() {
       </main>
 
       <footer className="footer">
+        <h2>
         <p>Built on <a href="https://docs.arc.io" target="_blank" rel="noopener noreferrer">Arc</a> | Chain ID: 5042002 | Gas: USDC</p>
+        <p>Author:discord(senver7) <a href="https://x.com/udShed7" target="_blank">udShed7</a></p>
+        </h2>
       </footer>
     </div>
   )
