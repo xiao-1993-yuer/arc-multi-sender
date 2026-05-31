@@ -1,4 +1,4 @@
-import { createWalletClient, createPublicClient, http, parseUnits, formatUnits } from 'viem'
+import { createWalletClient, createPublicClient, http, parseUnits, formatUnits, type Hash } from 'viem'
 import { privateKeyToAccount } from 'viem/accounts'
 import { arcTestnet } from './arc'
 import type { TransferStatus } from './types'
@@ -35,18 +35,16 @@ export async function sendUSDC(
   privateKey: `0x${string}`,
   toAddress: `0x${string}`,
   amountUSDC: string,
-): Promise<{ txHash: string }> {
+): Promise<{ txHash: Hash }> {
   const walletClient = getWalletClient(privateKey)
-  const account = privateKeyToAccount(privateKey)
 
   const value = parseUnits(amountUSDC, 18)
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const txHash = await walletClient.sendTransaction({
-    account,
     to: toAddress,
     value,
-    chain: arcTestnet,
-  })
+  } as any)
 
   return { txHash }
 }
